@@ -1,24 +1,24 @@
 class Solution {
-    static int  calcScale( char c , char a1 , char a2 ) {
-        return (c == a1 || c == a2) ? -1 : +1;
-    }
 public:
     int romanToInt(string s) {
-        int     result = 0;
+        // Map of Roman numerals and their corresponding integer values
+        unordered_map<char, int> romanToIntMap = {
+            {'I', 1}, {'V', 5}, {'X', 10}, {'L', 50},
+            {'C', 100}, {'D', 500}, {'M', 1000}
+        };
 
-        for( size_t n = 0 ; n < s.size() ; ++n )
-        {
-            switch( s[n] )
-            {
-            case 'M':   result += 1000; break;
-            case 'D':   result +=  500; break;
-            case 'C':   result +=  100 * calcScale( s[n+1] , 'M' , 'D' ); break;
-            case 'L':   result +=   50; break;
-            case 'X':   result +=   10 * calcScale( s[n+1] , 'C' , 'L' ); break;
-            case 'V':   result +=    5; break;
-            case 'I':   result +=    1 * calcScale( s[n+1] , 'X' , 'V' ); break;
+        int result = 0;
+        int n = s.size();
+
+        for (int i = 0; i < n; i++) {
+            // If the current value is smaller than the next value, subtract it
+            if (i + 1 < n && romanToIntMap[s[i]] < romanToIntMap[s[i + 1]]) {
+                result -= romanToIntMap[s[i]];
+            } else {
+                result += romanToIntMap[s[i]];
             }
         }
+
         return result;
     }
 };
