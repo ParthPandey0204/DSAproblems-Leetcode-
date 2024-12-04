@@ -4,7 +4,7 @@ public:
         long long num = 0;
         int sign = 1;
         bool flag = 0;
-        for(int i = 0; s[i] != '\0'; i++){
+        for(int i = 0; i<s.size(); i++){
             char ch = s[i];
             if(isdigit(ch)){
                 flag = 1;
@@ -26,7 +26,7 @@ public:
                     break;
             }else break;
         }
-        num = num * sign;
+        num = num*sign;
         return int(num);
     }
 };
