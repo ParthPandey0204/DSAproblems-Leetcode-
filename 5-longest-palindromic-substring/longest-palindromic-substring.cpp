@@ -2,7 +2,6 @@ class Solution {
 public:
     string longestPalindrome(string s) {
         if (s.empty()) return "";
-
         int start = 0; 
         int maxLength = 1;  
         for (int i = 0; i < s.size(); ++i) {
