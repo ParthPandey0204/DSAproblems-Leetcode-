@@ -1,20 +1,16 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        int cnt ;
-        int n = nums.size();
-        for(int i=0;i<n;i++){
-             cnt =0;
-            int num = nums[i];
-            for(int j=0;j<n;j++){
-                if(nums[j]==num){
-                    cnt++;
-                }
-            }
-            if(cnt ==1){
-                return num;
-            }
+       map <int,int> hashMap; 
+       int n = nums.size();
+       for(int i =0; i<n; i++){
+          hashMap[nums[i]]++;
+       }
+       for(auto it : hashMap){
+        if(it.second == 1){
+            return it.first;
         }
-        return -1;
+       }
+      return -1;
     }
 };
