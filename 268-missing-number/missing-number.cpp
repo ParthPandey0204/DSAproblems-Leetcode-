@@ -2,11 +2,15 @@ class Solution {
 public:
     int missingNumber(vector<int>& nums) {
         int n = nums.size();
-        int sum = (n*(n+1))/2;
-        int sumf = 0;
-        for(int i= 0; i < n; i++){
-            sumf += nums[i];
+       vector<int>hash(n+1,0);
+        for(int i=0; i<n;i++){
+            hash[nums[i]]++;
         }
-        return (sum - sumf);
+        for(int i=0;i<=n;i++){
+            if(hash[i]==0){
+                return i;
+            }
+        }
+        return -1;
     }
 };
